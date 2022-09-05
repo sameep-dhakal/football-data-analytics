@@ -1,2 +1,1 @@
-# football-data-analytics
-this is ongoing project for football data analytics
+This repo contains ongoing football data analaytics project
