@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<section class="w-full bg-gray-100 py-16 px-6">
+  <div class="max-w-5xl mx-auto bg-white rounded shadow-sm flex flex-col space-y-4 p-13">
+    <h2 class="text-center text-3xl font-bold py-2">Player Details </h2>
+    <!--Print errors-->
+    {% if form.errors%}
+        {% for error in form.errors %}
+        <li class="text-red-500 text-sm">{{ error }}</li>
+        {% endfor%}
+    {% endif%}
+
+    <!--error end-->
+    <!-- Messages -->
+    {% if messages %}
+    <ul class="flex flex-col space-y-2 max-w-2xl mx-auto">
+      {% for message in messages %}
+      <li class="text-red-500 text-sm">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- Messages End -->
+    <!-- Form -->
+    <form method="post" class="flex flex-col space-y-8">
+      {% csrf_token %}
+      {{form}}
+
+  <!-- From End -->
+  </div>
+</section>
+
+
+{%endblock content %}
