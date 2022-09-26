@@ -8,6 +8,8 @@
 
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
   <link rel="stylesheet" href="/static/fonts/icomoon/style.css">
 
@@ -52,7 +54,6 @@
         <div class="d-flex align-items-center">
           <div class="site-logo">
             <a href="{% url 'home_page'%}">
-              <img src="/static/images/logo.png" alt="Logo">
             </a>
           </div>
           <div class="ml-auto">
@@ -74,38 +75,43 @@
 
     </header>
 
-    <div class="hero overlay" style="background-image: url('/static/images/bg_6.jpg');">
+    <div class="hero overlay" style="background-color: rgb(30, 9, 9);">
       <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-5 mx-auto text-center">
-            <h1 class="text-white">View Player Details</h1>
-            <h2>Leo Messi</h2>
+        <div class="row align-items-center m-lg-1">
+          <div class="col-lg-10">
+          <h1 class="text-white">View Player Stats</h1>
+        </div>
 
-            <div class="row">
-              <div class=" btn accent-cyan  text-lg-center text-bg-info">
-                <h3>Country</h3>
-
+              <div class="row">
+              <div class="col-lg-5 m-auto">
+                <canvas id="bar-chart" width="800" height="450"></canvas>
               </div>
     
-              <div class="btn col-md text-lg-center text-bg-info">
-                <h3>club</h3>
+              <div class="col-lg-5 m-auto">
+                  <canvas id="line-chart" width="800" height="450"></canvas>
               </div>
     
-              <div class=" btn col-md text-lg-center text-bg-info">
-                <h3>Player</h3>
+              <div class="col-lg-5 m-auto">
+                <canvas id="radar-chart" width="800" height="450"></canvas>
               </div>
+              <div class="col-lg-5 m-auto">
+                <canvas id="pie-chart" width="800" height="450"></canvas>
+              </div>
+
+
               
             </div>
           </div>
-          </div>
+         
          
           
           
 
-        
+        </div>
+
 
       </div>
-    </div>
+
 
 
 
@@ -325,7 +331,7 @@
                 <script>
                   document.write(new Date().getFullYear());
                 </script> All rights reserved | This Website is made with <i class="icon-heart"
-                  aria-hidden="true"></i> SAMEEP 
+                  aria-hidden="true"></i> jimmy smith
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               </p>
             </div>
@@ -357,6 +363,127 @@
 
 
   <script src="/static/js/main.js"></script>
+
+  <script>
+    // bar chart
+  new Chart(document.getElementById("bar-chart"), {
+      type: 'bar',
+      data: {
+        labels: ["2011", "2012", "2013", "2014", "2015"],
+        datasets: [
+          {
+            label: "goals)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+            data: [24,52,73,84,43]
+          }
+        ]
+      },
+      options: {
+        legend: { display: true },
+        title: {
+          display: true,
+          text: 'goals scored by messi'
+        }
+      }
+  });
+  </script>
+
+  <script>
+new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: [15,16,17,17,18,18,19,19,19,20],
+    datasets: [{ 
+        data: [86,11,60,106,107,11,133,22,7,24],
+        label: "Goals",
+        borderColor: "#3e95cd",
+        fill: false
+      }, { 
+        data: [42,31,65,06,07,115,43,29,99,44],
+        label: "Assist",
+        borderColor: "#8e5ea2",
+        fill: false
+      }, { 
+        data: [16,17,18,19,23,26,40,54,67,73],
+        label: "passes",
+        borderColor: "#3cba9f",
+        fill: false
+      }, { 
+        data: [40,20,10,16,24,38,74,167,58,74],
+        label: "shots",
+        borderColor: "#e8c3b9",
+        fill: false
+      }, { 
+        data: [6,3,2,2,7,26,82,17,32,43],
+        label: "offsides",
+        borderColor: "#c45850",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Messi stats'
+    }
+  }
+});
+  </script>
+
+  <script>
+    new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: ["real_madrid", "sevilla", "Eibar", "betis", "North Espanyol"],
+      datasets: [{
+        label: "goals overll",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: [24,52,73,78,43]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'predicted messi goals'
+      }
+    }
+});
+  </script>
+
+  <script>
+    new Chart(document.getElementById("radar-chart"), {
+    type: 'radar',
+    data: {
+      labels: ["2018", "2019", "2021", "2021", "2022"],
+      datasets: [
+        {
+          label: "2011",
+          fill: true,
+          backgroundColor: "rgba(179,181,198,0.2)",
+          borderColor: "rgba(179,181,198,1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(179,181,198,1)",
+          data: [8.77,55.61,21.69,6.62,6.82]
+        }, {
+          label: "2022",
+          fill: true,
+          backgroundColor: "rgba(255,99,132,0.2)",
+          borderColor: "rgba(255,99,132,1)",
+          pointBorderColor: "white",
+          pointBackgroundColor: "rgba(255,99,132,1)",
+          pointBorderColor: "#fff",
+          data: [25.48,54.16,7.61,8.06,4.45]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Distribution in % of messi goals'
+      }
+    }
+});
+  </script>
 
 </body>
 
